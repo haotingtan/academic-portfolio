@@ -1,0 +1,27 @@
+Caffrey Ave:Queens University:Kohl's:0:5:0.5
+Calamus Ave:Queens University:L'Artusi:1:2:1
+Calamus Cir:L'Artusi:Jane Hair Salon:0:30:15
+Caldwell Ave:L'Artusi:Times Square:2.75:5.4:3
+Calloway St:Queens Library:Vessel:1:3:1
+Catania Pl:Key Food:The Home Depot:0:13:2
+Cedar Ln:Kohl's:Queens Library:0:25:13
+Cedar St:World Trade Center:Jane Hair Salon:6:15:15
+Celtic Ave:Holiday Inn:Thai Diner:0:10:2.1
+Center Blvd:Pace University:Mount Hospital:2:12:3.4
+Battery Park Underpass:Apple Store:Haidilao Hotpot:1.75:20:8.5
+Battery Pl:Times Square:The Met:0.4:14:3
+Baxter St:Macy's:Target:1:5:1.3
+Bayard St:Vessel:Pizza Hut:3:6:2.1
+Beach St:Thai Diner:Queens University:0:2:0.2
+Beak St:Mount Hospital:Kohl's:0.4:40:20
+Bear Rd:The Met:Pace University:3.6:20:4.3
+Beaver St:The Home Depot:Queens University:2.9:13.9:4.6
+Bedford St:Haidilao Hotpot:Jane Hair Salon:4.3:12:3.1
+Beekman Pl:Jane Hair Salon:L'Artusi:9.9:10:30
+Edward Pl:Jane Hair Salon:Macy's:0.3:10.4:2.8
+Eldert Ln:Thai Diner:Queens Library:3.2:21:8.9
+Eldridge St:Apple Store:World Trade Center:5.4:14.2:7.6
+Willis Ave Bridge:The Met:Kohl's:2.3:10.8:5.4
+Wooster St:Pizza Hut:Apple Store:2:10:2.7
+Worth St:Haidilao Hotpot:Key Food:4.3:13:8.9
+Wyckoff Ave:Target:Macy's:0:24:11
