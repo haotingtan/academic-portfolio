@@ -1,0 +1,2 @@
+# Exceise on pointers
+The purpose of this assignment is to practice writing C programs and gain experience working in this low-level, non-object oriented language. After completing both p2A and p2B, you should be comfortable with pointers, arrays, address arithmetic, structures, command-line arguments, and file I/O in C. For this part, your focus will be on pointers, arrays and address arithmetic.
