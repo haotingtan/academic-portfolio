@@ -1,0 +1,8 @@
+Michael L. Littman, Ifeoma Ajunwa, Guy Berger, Craig Boutilier, Morgan Currie, Finale Doshi-Velez, Gillian Hadfield, Michael C. Horowitz, Charles Isbell, Hiroaki Kitano, Karen Levy, Terah Lyons, Melanie Mitchell, Julie Shah, Steven Sloman, Shannon Vallor, and Toby Walsh. “Gathering Strength, Gathering Storms: The One Hundred Year Study on Artificial Intelligence (AI100) 2021 Study Panel Report.” Stanford University, Stanford, CA, September 2021. Doc: http://ai100.stanford.edu/2021-report.
+
+Lewinson, Eryk. “Artificial Intelligence in Finance: Opportunities and Challenges.” Medium, Towards Data Science, 18 September. 2021, https://towardsdatascience.com/artificial-intelligence-in-finance-opportunities-and-challenges-cee94f2f3858.
+
+Klein, Aaron. “Credit Denial in the Age of Ai.” Brookings, Brookings, 11 Apr. 2019, https://www.brookings.edu/research/credit-denial-in-the-age-of-ai/.
+
+Mejia, Niccolo. “AI-Based Fraud Detection in Banking - What's Possible.” Emerj Artificial Intelligence Research, Emerj, 10 Mar. 2020, https://emerj.com/ai-sector-overviews/artificial-intelligence-fraud-banking/.
+
