@@ -1,0 +1,48 @@
+{
+  "score": 100.0,
+  "tests": [
+    {
+      "test": "has_pages",
+      "points": 9,
+      "possible": 9
+    },
+    {
+      "test": "has_links",
+      "points": 6,
+      "possible": 6
+    },
+    {
+      "test": "browse",
+      "points": 10,
+      "possible": 10
+    },
+    {
+      "test": "rate",
+      "points": 5,
+      "possible": 5
+    },
+    {
+      "test": "ab_testing",
+      "points": 25,
+      "possible": 25
+    },
+    {
+      "test": "edgar_utils",
+      "points": 20.0,
+      "possible": 20
+    },
+    {
+      "test": "analysis",
+      "points": 15,
+      "possible": 15
+    },
+    {
+      "test": "dashboard",
+      "points": 10,
+      "possible": 10
+    }
+  ],
+  "lint": [],
+  "date": "11/14/2023",
+  "latency": 28.80313777923584
+}

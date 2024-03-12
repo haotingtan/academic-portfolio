@@ -1,0 +1,18 @@
+{
+  "score": 95,
+  "errors": [
+    [
+      "Traceback (most recent call last):",
+      "  File \"/home/haotingtan/CS320-FA23/p3/tester.py\", line 185, in main",
+      "    test()",
+      "  File \"/home/haotingtan/CS320-FA23/p3/tester.py\", line 157, in ind_test",
+      "    assert len(f.read()) == 99951",
+      "AssertionError",
+      ""
+    ]
+  ],
+  "dfs_points": 25,
+  "bfs_points": 25,
+  "web_points": 25,
+  "ind_points": 20
+}
