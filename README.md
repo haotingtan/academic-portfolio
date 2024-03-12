@@ -10,6 +10,6 @@ This repository showcases programming projects I completed during my intermediat
 | Comp Sci 320 | Data Science Programming II   | Python  |
 | Comp Sci 354 | Machine Organization and Programming   | C & Assembly  |
 | Comp Sci 400 | Java Programming III   | Java  |
-| Comp Sci 537 | Introduction to Operating Systems   | C  |
-| Comp Sci 540 | Introduction to Artificial Intelligence   | Python  |
-| Comp Sci 544 | Introduction to Big Data Systems   | Python  |
+| Comp Sci 537 | Operating Systems   | C  |
+| Comp Sci 540 | Artificial Intelligence   | Python  |
+| Comp Sci 544 | Big Data Systems   | Python  |
