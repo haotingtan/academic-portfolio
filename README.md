@@ -1,6 +1,15 @@
-# Computer Sciences 354
-# Machine Organization and Programming
+# Academic Portfolio
 
+This repository showcases programming projects I completed during my intermediate and advanced coursework at the University of Wisconsin-Madison.
 
-## Description:
-An introduction to fundamental structures of computer systems and the C programming language with a focus on the low-level interrelationships and impacts on performance. Topics include the virtual address space and virtual memory, the heap and dynamic memory management, the memory hierarchy and caching, assembly language and the stack, communication and interrupts/signals, compiling and assemblers/linkers.
+## Summary: 
+| Course Code |     Course Description    | Programming Language |
+| :---:   | :---: | :---: |
+| Stat 240 | Data Science Modeling I   | R   |
+| Comp Sci 300 | Java Programming II   | Java  |
+| Comp Sci 320 | Data Science Programming II   | Python  |
+| Comp Sci 354 | Machine Organization and Programming   | C & Assembly  |
+| Comp Sci 400 | Java Programming III   | Java  |
+| Comp Sci 537 | Introduction to Operating Systems   | C  |
+| Comp Sci 540 | Introduction to Artificial Intelligence   | Python  |
+| Comp Sci 544 | Introduction to Big Data Systems   | Python  |
