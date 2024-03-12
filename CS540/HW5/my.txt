@@ -1,0 +1,22 @@
+Q3a:
+[[   1 1800]
+ [   1 1801]
+ [   1 1802]]
+Q3b:
+[120 155  99]
+Q3c:
+[[      3    5403]
+ [   5403 9730805]]
+Q3d:
+[[ 1.62180083e+06 -9.00500000e+02]
+ [-9.00500000e+02  5.00000000e-01]]
+Q3e:
+[[ 9.00833333e+02  3.33333334e-01 -9.00166666e+02]
+ [-5.00000000e-01  0.00000000e+00  5.00000000e-01]]
+Q3f:
+[ 1.90351667e+04 -1.05000000e+01]
+Q4: -2195.833332218419
+Q5a: <
+Q5b: This sign tells that the Lake-Mendota ice days decreases as the year increases
+Q6a: 1812.873015889519
+Q6b: x* is NOT a compelling result because ice days over past ~150 years does not have a strong significant trend(some years might have more ice days but some years might have less ice days. It seems like ice days has a little or no association with years. As a result, using linear regression to estimate the ice days is NOT a compelling prediction.
