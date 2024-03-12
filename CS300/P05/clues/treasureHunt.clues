@@ -1,0 +1,13 @@
+background
+Welcome to this backyard treasure hunt! You have to find the gold coin and drop it onto the target to win.
+c: winner: 65: 215: Congratulations, you won!
+C: koala: 350: 65: What a cute stuffed koala! It looks like a real one!
+c: coinTarget: 65: 510: This where the gold coin must be dropped.
+d: coin: 465: 90: coinTarget: Well done, the gold coin matches the target!: winner
+c: phone: 700: 490: Here you go! The gold coin is next to the Koala.: coin
+c: phoneNoPower: 700: 490: This phone needs batteries. Try to find batteries or an object which runs on batteries!
+d: batteries: 260: 420: phoneNoPower: I can't believe those batteries fit into this phone!: phone
+C: robot: 70: 175: This robot used to run on batteries.: batteries
+C: map: 330: 550: The map says to drop the gold coin there.: coinTarget
+C: chest: 365: 400: This chest appears to be locked. Find the key!
+D: key: 70: 70: chest: Open sesame! I wonder how long this phone has been locked in this chest?: phoneNoPower
