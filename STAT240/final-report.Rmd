@@ -1,0 +1,213 @@
+---
+title: "Military Expenditure vs. GDP"
+output:
+  html_document:
+    df_print: paged
+author: 
+- Haoting Tan
+- Aditya Machiroutu
+- Neve Peterson
+- Xiyu Cao
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE)
+library(lubridate)
+library(tidyverse)
+```
+
+Note: It is expected that the data, rmd, html, files are all in the same directory.
+
+Section List: [Introduction] - [Background] - [Analysis] - [Discussion] - [References]
+
+## Introduction
+Recently, we have been reminded of the serious implications of international tensions: war between Ukraine and Russia, as well as Palestine and Israel. Some people believe war is to be condemned and that countries should preventatively cut military expenditure, while others assert that countries should maintain or increase military expenditure as an act of deterrence. Economic divides worldwide causes nations to experience disparities among access to resources and funding that can provide military assets. Therefore, we become interested in how access to domestic funding influences a nation's military expenditure. Our motivation in this project will be to uncover the trend of military spending by countries worldwide in relation to their gross domestic product (GDP).
+
+**Thesis Statement**: The higher the GDP of a country, the higher it will spend on military expenditure.
+
+## Background
+We collected two datasets: one for GDP and one for military expenditure. Both datasets come from the same organization; The World Bank. The links to these datasets can be found in the [References] section. In the GDP dataset, each single row represents a country with a yearly GDP in US dollars (adjusted for inflation to be equivalent to current rates) at a specific year. Similarly, in the military expenditure dataset, each row represents a specific country's military spending in US dollars (also adjusted for inflation) at a specific year. Since some countries don't have a completed record from 1960 to 2022, we decided to only use data pertaining to countries that have a complete record, of which there are fifty.
+
+To improve understanding of the variables, we will provide more information on GDP and military expenditure. Gross Domestic Product measures the value of the final goods and services produced within a country yearly and reflects a country’s financial situation. Military expenditure is the country's current expenditure on the armed forces, defense ministries, and all other activities pertaining to active military efforts.
+
+The raw dataset is not good enough for us to analyze. We first pivot both datasets longer, so that each row is a single case. We then join our datasets, which will be our dataframe for the rest of the analysis. Below is a list of column names with definitions that compose the dataframe:
+
+- country_name : The name of the country.
+- country_code: Three letter abbreviation of the country name.
+- year: What year the GDP and military expenditure observations were recorded in.
+- GDP: GDP stands for “Gross Domestic Product”. Unit in US Dollars, adjusted for inflation to be equivalent to present day currency rates.
+- military: Military expenditure by that country, in that year. Unit in US Dollars, adjusted for inflation to be equivalent to present day currency rates.
+
+There is a special case addressed below, on which more details can be found in [Potential Outliers] and [Discussion]. In short, Costa Rica has a completed record and is thus found in our final dataset, however, Costa Rica does not have a military; therefore, its military expenditure is zero. However, this does not much affect our results as it composes only a small section of our dataframe (63 observations are Costa Rica, out of 3150 total).
+
+The rest of the report will include a regression model to analyze the relationship between a country's GDP and military expenditure. By using hypothesis tests, we will analyze the slope of the regression model. In the end, we will use the result from the hypothesis tests to interpret the data and make conclusions about our thesis hypothesis.
+
+
+## Analysis
+```{r read-data, include = FALSE}
+## Read in the csv file
+gdp = read_csv("gdp.csv") 
+military = read_csv("military.csv")
+```
+
+```{r tidy-data, include = FALSE}
+gdp = gdp %>%
+  select(-'Indicator Name', -'Indicator Code') %>%
+  pivot_longer(!c('Country Name', 'Country Code'), names_to = "year", values_to = "GDP") %>%
+  rename(country_name = 'Country Name', country_code = 'Country Code') %>%
+  mutate(year = as.integer(year), GDP = as.double(GDP))
+
+military = military %>%
+  select(-'Indicator Name', -'Indicator Code') %>%
+  pivot_longer(!c('Country Name', 'Country Code'), names_to = "year", values_to = "military") %>%
+  rename(country_name = 'Country Name', country_code = 'Country Code') %>%
+  mutate(year = as.integer(year), military = as.double(military))
+
+analysis_data = gdp %>%
+  left_join(military, by = c('country_name', 'country_code', 'year'))
+  
+analysis_data = analysis_data %>%
+  drop_na() %>%
+  group_by(country_name) %>%
+  mutate(n = n()) %>%
+  filter(n == (2022 - 1960 + 1)) %>%
+  select(-n) %>%
+  ungroup()
+```
+
+#### Numerical Summary
+```{r, echo = FALSE}
+analysis_sum = analysis_data %>%
+  summarize( n = n(), num_countries = n / (2022 - 1960 + 1), avg_gdp = mean(GDP), sd_gdp = sd(GDP), 
+             avg_military = mean(military), sd_military = sd(military),
+            tmin = min(year), tmax = max(year), r = cor(GDP, military))
+
+analysis_sum
+```
+
+> From the summary table, it contains 3150 data points. The GDP data has a average of 2.39 $\cdot$ 10<sup>12</sup> US Dollars and 7.34 $\cdot$ 10<sup>12</sup> US Dollars smaple standard deviation; the military expenditure has a average of 6.17 $\cdot$ 10<sup>10</sup> US Dollars and 1.89 $\cdot$ 10<sup>11</sup> US Dollars smaple standard deviation. The dataset contains data from 50 countries, where each country from year 1960 to 2022. The correlation between military expenditure and GDP is 0.975, which means they are strongly correlated with each other.
+
+#### Graphical Summary
+```{r, echo = FALSE}
+avg_military = analysis_sum %>%
+  pull(avg_military) 
+
+avg_gdp = analysis_sum %>%
+  pull(avg_gdp)
+
+ggplot(analysis_data, aes(x=GDP, y=military)) +
+  geom_point(alpha = 0.5) +
+  geom_vline(xintercept = avg_gdp, color = "red", linetype = "dashed", alpha = 0.5) +
+  geom_hline(yintercept = avg_military, color = "red", linetype = "dashed", alpha = 0.5) +
+  xlab("GDP (USD)") +
+  ylab(" military expenditure (USD)") +
+  ggtitle("Military Expenditure vs. GDP")
+  
+ggplot(analysis_data, aes(x=log10(GDP), y=log10(military))) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(se = FALSE, method = "lm", color = "blue") +
+  geom_vline(xintercept = log10(avg_gdp), color = "red", linetype = "dashed", alpha = 0.5) +
+  geom_hline(yintercept = log10(avg_military), color = "red", linetype = "dashed", alpha = 0.5) +
+  xlab("log of GDP (USD)") +
+  ylab("log of military expenditure (USD)") +
+  ggtitle("Military Expenditure in log10 vs. GDP in log10")
+```
+
+> It’s hard to see a clear pattern in the plot based on the raw collected data since most data located at the lower left corner. However, we can see a lot more of a relationship between military expenditure and GDP on the log<sub>10</sub> scale plot. The general pattern is that there is a positive association between log<sub>10</sub>(GDP) and log<sub>10</sub>(military expenditure). The red dashed lines represent the average values of the collected data.
+
+#### Hypothesis Test on the Slope of the Model
+- We Estimate model to be a Power-law Model (Appropriation is addressed below)
+
+$$
+log_{10}(Military_i) = \theta_0 + \theta_1 log_{10}(GDP_i) + \varepsilon_i
+$$
+
+- Hypotheses: 
+  - We test the null that our slope parameter θ(which is the power law exponent) is 0, suggesting there is no relationship between log<sub>10</sub>(military) and log<sub>10</sub>(GDP), against the alternative that there is a positive relationship.
+$$
+H_0: \theta_1 = 0 \\
+H_a: \theta_1 > 0
+$$
+
+- Test Statistic
+$$
+T = \frac{\hat{\theta_1} - 0}{s_{\hat{\theta_1}}}
+$$ 
+- Sample Distribution
+```{r, include = FALSE}
+log_analysis_data = analysis_data %>%
+  mutate(log_gdp = log10(GDP), log_military = log10(military)) %>%
+  filter(country_code != "CRI")
+
+linear_model = lm(log_military ~ log_gdp, data = log_analysis_data)
+summary(linear_model)
+```
+  - T distribution with 3085 degrees of freedom
+  - The estimated slope is θ̂=1.01373 with an estimated standard error of SE(θ̂)=0.00478. t-statistic is
+$$
+T = \frac{1.01373 - 0}{0.00478} = 212.08
+$$ 
+
+- p-value
+```{r, include = FALSE}
+tstat = (coef(summary(linear_model))[2]-0)/coef(summary(linear_model))[2, "Std. Error"]
+
+p_value = pt(tstat, df=nrow(log_analysis_data)-2, lower.tail=FALSE)*2
+p_value
+```
+
+> The probability (area) to the right of t = 212.08 under a t density with 3085 degrees of freedom is our p-value(because $H_a: \theta_1 > 0$), which is extremely close to 0. Since the p-value is less than 0.05, there is evidence suggesting that we can reject the null hypothesis(p-value < 2 $\cdot$ 10<sup>-11</sup>, right-tail t-test).
+
+#### Appropriation of Model Selection
+
+> We test the null that our slope parameter θ(which is the power law exponent) is 1, suggesting a linear relationship between log<sub>10</sub>(military) and log<sub>10</sub>(GDP), against the alternative that there is a power law relationship. Using the model summary table above, restate the Hypotheses to 
+
+$$
+H_0: \theta_1 = 1 \\
+H_a: \theta_1 \neq 1
+$$
+
+> so Test Statistic becomes
+
+$$
+T = \frac{\hat{\theta_1} - 1}{s_{\hat{\theta_1}}} = \frac{1.01373 - 1}{0.00478} = 2.8724
+$$ 
+
+
+> p-value is the probability (area) to the left of t = -2.8724 and right of t = 2.8724 under a t density with 3085 degrees of freedom is our p-value(because $H_a: \theta_1 \neq 1$), which is extremely close to 0.0041. Since the p-value is less than 0.05, there is evidence suggesting that we can reject the null hypothesis (p = 0.0041, two-sided t-test).
+
+```{r, echo = FALSE}
+tstat = (coef(summary(linear_model))[2]-1)/coef(summary(linear_model))[2, "Std. Error"]
+p_value = pt(tstat, df=nrow(log_analysis_data)-2, lower.tail=FALSE)*2
+```
+
+> In the graphical summary, we make a scatter plot based on the raw collected data and found that it is not good enough to make inferences/conclusion since the data cluster is focused at the lower left corner. After we adjust the data on log 10 scale, we can see much clear cluster spread out the whole graph which can help us better to make inference on the relationship between a country's GDP and military expenditure. 
+
+> We can confirm that the power law relationship is a better fit for our data after preforming the hypotheses test above. Since the p-value is less than 0.05, there is evidence suggesting that we can reject the null hypothesis. In other words, the results suggest that a linear model is not appropriate and instead favor of a power law exponent greater than 1 (p-value = 0.0041, two-sided t-test). The relationship between military expenditure and GDP is not linear; it is more appropriate to use power-law model to preform inference on their relationship.
+
+#### Potential Outliers
+```{r, echo = FALSE}
+analysis_data %>%
+  filter(military == 0) 
+
+zero_military = analysis_data %>%
+  filter(country_name == "Costa Rica", military == 0) %>%
+  summarize(n = n()) %>%
+  pull(n)
+```
+
+> There are 63 rows of data for the country Costa Rica, all of which have a military expenditure of 0 USD. This situation makes it so that those data points can’t be analysed in the power-law model since log<sub>10</sub>(0) = negative infinity. This prompts us to ask if those data points are recorded incorrectly or if they are in fact 0. After researching, we found that the data points are accurately recorded since Costa Rica does not have a military (Eguizábal, 2023).
+
+## Discussion 
+We aimed to determine whether there is a positive relationship between a country's military expenditure and GDP.
+
+Based on our analysis, there is strong evidence that there is a positive relationship between a country's military expenditure and GDP. In layman's terms, if a country's GDP is increasing, we expect military expenditure is also increasing.
+
+There are two short-comings in our analysis. Firstly, since Costa Rica has no military expenditure, we can not use it in our analysis. Secondly, the sample size of our data was greatly reduced by removal of countries with incomplete records spanning from 1960 to 2022 in the categlories of both GDP and military expenditure. Considering that countries with complete records are likely more developed countries, we must consider having lost the perspective of less developed nations. It would likely have provided more precise inference had there been more countries with complete records to include in the sample.
+
+We saw that a country's GDP is strongly correlated with its military expenditure; however, what are some other factors affecting military expenditure? Possible factors are geographical location, population, and a country's economic development over time. Additionally, GDP and military expenditure are affected greatly during times of war; what influence does wartime have on the relationship between a country's GDP and military expenditure?
+
+## References
+^[https://data.worldbank.org/indicator/NY.GDP.MKTP.CD]
+^[https://data.worldbank.org/indicator/MS.MIL.XPND.CD]
+^[Eguizábal, Cristina. “Why Did Costa Rica Really Abolish Its Military?” Americas Quarterly, 25 Apr. 2023, www.americasquarterly.org/article/why-did-costa-rica-really-abolish-its-military/#:~:text=Politics%2C%20not%20pacifism%2C%20led%20the,decision%20that%20still%20resonates%20today.&amp;text=SAN%20JOSÉ%2C%20Costa%20Rica%20—%20As,creating%20a%20sense%20of%20nationhood.]
