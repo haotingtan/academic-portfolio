@@ -1,9 +1,5 @@
 # Project 2: Loan Analysis
 
-## Corrections/Clarifications
-
-* none yet
-
 ## Overview
 
 Sadly, there is a long history of lending discrimination based on race
@@ -30,10 +26,6 @@ Things you'll practice:
 * trees
 * testing
 * writing modules
-
-There's a lot of new stuff here, and students have often reported back
-that P2 is the hardest of the semester, so we encourage you to start
-early.
 
 ## Testing
 
