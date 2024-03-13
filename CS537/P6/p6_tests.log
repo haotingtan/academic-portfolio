@@ -1,0 +1,50 @@
+Sat Apr 15 09:45:54 PM CDT 2023
+gcc -o psort psort.c -Wall -Werror -lpthread -O
+10+0 records in
+10+0 records out
+10000000 bytes (10 MB, 9.5 MiB) copied, 0.0240626 s, 416 MB/s
+Test 1
+2 Time taken for execution: 0.007259 seconds
+4 Time taken for execution: 0.006105 seconds
+6 Time taken for execution: 0.005794 seconds
+8 Time taken for execution: 0.004999 seconds
+10 Time taken for execution: 0.005573 seconds
+12 Time taken for execution: 0.005221 seconds
+14 Time taken for execution: 0.005848 seconds
+16 Time taken for execution: 0.005475 seconds
+100+0 records in
+100+0 records out
+100000000 bytes (100 MB, 95 MiB) copied, 0.220304 s, 454 MB/s
+Test 2
+2 Time taken for execution: 0.111605 seconds
+4 Time taken for execution: 0.098896 seconds
+6 Time taken for execution: 0.105052 seconds
+8 Time taken for execution: 0.100584 seconds
+10 Time taken for execution: 0.116522 seconds
+12 Time taken for execution: 0.105990 seconds
+14 Time taken for execution: 0.107339 seconds
+16 Time taken for execution: 0.103432 seconds
+1000+0 records in
+1000+0 records out
+1000000000 bytes (1.0 GB, 954 MiB) copied, 2.15059 s, 465 MB/s
+Test 3
+2 Time taken for execution: 1.608012 seconds
+4 Time taken for execution: 1.394528 seconds
+6 Time taken for execution: 1.472853 seconds
+8 Time taken for execution: 1.437819 seconds
+10 Time taken for execution: 1.537149 seconds
+12 Time taken for execution: 1.499061 seconds
+14 Time taken for execution: 1.491052 seconds
+16 Time taken for execution: 1.477400 seconds
+4000+0 records in
+4000+0 records out
+4000000000 bytes (4.0 GB, 3.7 GiB) copied, 8.8075 s, 454 MB/s
+Test 4
+2 Time taken for execution: 9.065986 seconds
+4 Time taken for execution: 10.889579 seconds
+6 Time taken for execution: 8.359342 seconds
+8 Time taken for execution: 8.016032 seconds
+10 Time taken for execution: 8.613723 seconds
+12 Time taken for execution: 8.336133 seconds
+14 Time taken for execution: 8.151242 seconds
+16 Time taken for execution: 8.099505 seconds
