@@ -1,8 +1,5 @@
 # Project 4: Building a Website Sharing EDGAR Web Logs 
 
-## Testing
-Run `python3 tester.py` inside of your `p4` directory (your program must be named `main.py`) and work on fixing any issues. As in Project 2, the tester will use `module_tester.py` to check your `edgar_utils.py` module.
-
 ## Overview
 
 In the US, public companies need to regularly file
@@ -165,17 +162,3 @@ south = 25
 
 Finally, display this plot on your homepage in the SVG format via a flask route. 
 
-
-## Concluding Thoughts
-The EDGAR logs are supposedly anonymized (with the last three docs
-left), but we can still tell where the users live and what they're
-looking at.
-
- By connecting the filing information with the logs, we can learn a lot about the behavior of the investment firms which use the database - for example, we might learn which companies (or industries) a hedge fund might be considering investing in, and the extent to which it relies on automated vs manual research in its trading.
-
-Others have used this same data to make good guesses
-about what docs various hedge funds and others are looking at, then
-correlate that with success.  For those interested in the nitty-gritty
-details of what could be done with this data, take a look at this
-early-stage work: [Hedge Funds and Public Information
-Acquisition](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3127825).
