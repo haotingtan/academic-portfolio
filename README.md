@@ -13,3 +13,4 @@ This repository showcases programming projects I completed during my intermediat
 | Comp Sci 537 | Operating Systems   | C  | Processes & Scheduling, Address Spaces, Memory: TLBs, Threads and Concurrency, Local File System, distributed Systems Intro: UDP & TCP  |
 | Comp Sci 540 | Artificial Intelligence   | Python  | Natural Language Processing(NLP), Regression & Classification, Neural Networks, Deep Learning, Game Theory, Reinforcement Leraning  |
 | Comp Sci 544 | Big Data Systems   | Python  | Docker, PyTorch, Threads & Locks, Caching, PyArrow, gRPC, File Systems, HDFS, Spark, Cassandra, Kafka, Google BigQuery |
+| Comp Sci 559 | Virtual Reality   | C# / Unity  | Game Design, 3D Modeling |
